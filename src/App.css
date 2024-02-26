@@ -1,3 +1,22 @@
+.wrapper {
+  display: grid;
+  place-content: center;
+}
+
+/* Section */
+.section {
+  border: 1px solid var(--primary-color);
+  min-height: 80px;
+  min-width: 300px;
+  padding-inline: 2.5rem;
+  padding-block: 1.5rem;
+}
+
+.section--wrapper {
+  /* display: grid; */
+  text-align: center;
+}
+
 /* Counter */
 .counter {
   display: flex;
@@ -7,7 +26,7 @@
 }
 
 .counter:last-of-type {
-  margin-bottom: initial;
+  margin-bottom: 2rem;
 }
 
 .counter_value {
@@ -35,6 +54,11 @@
   border: none;
   border-radius: 5px;
   font: inherit;
+}
+
+.button--lg {
+  min-width: 90%;
+  padding: 0.4rem;
 }
 
 .button--minus {
