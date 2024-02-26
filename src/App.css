@@ -1,0 +1,50 @@
+/* Counter */
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.counter:last-of-type {
+  margin-bottom: initial;
+}
+
+.counter_value {
+  background-color: var(--accent-color);
+  min-width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-group {
+  display: flex;
+  align-items: center;
+}
+
+.cta-group > * {
+  width: 30px;
+  height: 30px;
+}
+
+/* Buttons */
+.button {
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  font: inherit;
+}
+
+.button--minus {
+  font-weight: bold;
+  border-top-right-radius: initial;
+  border-bottom-right-radius: initial;
+}
+
+.button--plus {
+  font-weight: bold;
+  border-top-left-radius: initial;
+  border-bottom-left-radius: initial;
+}
