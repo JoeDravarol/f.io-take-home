@@ -18,7 +18,8 @@
 }
 
 /* Counter */
-.counter {
+.counter,
+.counter-snapshot {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +30,8 @@
   margin-bottom: 2rem;
 }
 
-.counter_value {
+.counter_value,
+.counter-snapshot_value {
   background-color: var(--accent-color);
   min-width: 35px;
   display: flex;
@@ -45,6 +47,19 @@
 .cta-group > * {
   width: 30px;
   height: 30px;
+}
+
+.counter-snapshot:first-of-type {
+  margin-top: 2rem;
+}
+
+.counter-snapshot:last-of-type {
+  margin-bottom: initial;
+}
+
+.counter-snapshot_value {
+  height: 30px;
+  border-radius: 5px;
 }
 
 /* Buttons */

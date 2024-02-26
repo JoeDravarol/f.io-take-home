@@ -10,6 +10,15 @@ type CounterProps = {
 const Counter = React.forwardRef(({ label }: CounterProps, ref) => {
   const [counter, setCounter] = React.useState(0);
 
+  React.useEffect(() => {
+    // Update counter's cache
+    // TODO: FIX TYPESCRIPT ERROR
+    ref.current = {
+      ...ref.current,
+      [label]: counter,
+    };
+  }, [counter]);
+
   return (
     <div className="counter">
       <span>{label}</span>
