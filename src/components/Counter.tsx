@@ -5,19 +5,15 @@ import PlusButton from './PlusButton';
 
 type CounterProps = {
   label: string;
+  updateCounterValue: (count: number) => void;
 };
 
-const Counter = React.forwardRef(({ label }: CounterProps, ref) => {
-  const [counter, setCounter] = React.useState(0);
+const Counter = ({ label, updateCounterValue }: CounterProps) => {
+  const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
-    // Update counter's cache
-    // TODO: FIX TYPESCRIPT ERROR
-    ref.current = {
-      ...ref.current,
-      [label]: counter,
-    };
-  }, [counter]);
+    updateCounterValue(count);
+  }, [count]);
 
   return (
     <div className="counter">
@@ -25,15 +21,15 @@ const Counter = React.forwardRef(({ label }: CounterProps, ref) => {
 
       <div className="cta-group">
         <MinusButton
-          handleClick={() => setCounter((prevCounter) => prevCounter - 1)}
+          handleClick={() => setCount((prevCount) => prevCount - 1)}
         />
-        <span className="counter_value">{counter}</span>
+        <span className="counter_value">{count}</span>
         <PlusButton
-          handleClick={() => setCounter((prevCounter) => prevCounter + 1)}
+          handleClick={() => setCount((prevCount) => prevCount + 1)}
         />
       </div>
     </div>
   );
-});
+};
 
 export default Counter;

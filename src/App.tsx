@@ -5,16 +5,7 @@ import Counter from './components/Counter';
 import Button from './components/Button';
 import CounterSnapshot from './components/CounterSnapshot';
 
-type CounterRef = {
-  [label: string]: number;
-};
-
 type Counter = {
-  id: string;
-  label: string;
-};
-
-type Snapshot = {
   id: string;
   label: string;
   value: number;
@@ -22,33 +13,41 @@ type Snapshot = {
 
 function App() {
   const [counters, setCounters] = React.useState<Counter[]>([]);
-  const [snapshots, setSnapshots] = React.useState<Snapshot[]>([]);
-
-  // Cache counter's data
-  const counterRef = React.useRef<CounterRef | {}>({});
+  const [snapshots, setSnapshots] = React.useState<Counter[]>([]);
 
   const addNewCounter = () => {
     const newCounter = {
       id: crypto.randomUUID(),
       label: `Counter ${counters.length + 1}`,
+      value: 0,
     };
 
     setCounters((prevState) => [...prevState, newCounter]);
   };
 
-  const takeSnapshot = () => {
-    const countersData = Object.entries(counterRef.current).map(
-      ([label, value]) => ({ id: crypto.randomUUID(), label, value })
-    );
+  const updateCounterValue = (id: string) => {
+    return (count: number) => {
+      setCounters((prevCounters) =>
+        prevCounters.map((counter) =>
+          counter.id !== id ? counter : { ...counter, value: count }
+        )
+      );
+    };
+  };
 
-    setSnapshots(countersData);
+  const takeSnapshot = () => {
+    setSnapshots(counters);
   };
 
   return (
     <div className="wrapper">
       <section className="section section--wrapper">
         {counters.map((counter) => (
-          <Counter key={counter.id} label={counter.label} ref={counterRef} />
+          <Counter
+            key={counter.id}
+            label={counter.label}
+            updateCounterValue={updateCounterValue(counter.id)}
+          />
         ))}
         <Button className="button--lg" onClick={addNewCounter}>
           Add
