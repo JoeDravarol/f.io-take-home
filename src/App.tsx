@@ -21,7 +21,7 @@ function App() {
 
     setCounters((prevState) => [
       ...prevState,
-      <Counter label={counterLabel} ref={counterRef} />,
+      <Counter key={counterLabel} label={counterLabel} ref={counterRef} />,
     ]);
   };
 
